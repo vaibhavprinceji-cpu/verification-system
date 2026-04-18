@@ -3,23 +3,21 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: sans-serif; padding: 20px; text-align: center; background: #f4f4f4; }
-        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: inline-block; }
-        .captcha-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        #captcha-box { background: black; color: white; padding: 5px 15px; font-family: monospace; font-weight: bold; font-size: 1.2rem; }
-        input { border: 1px solid #ccc; padding: 8px; width: 120px; border-radius: 4px; }
-        button { display: block; margin: 20px auto; padding: 10px 25px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        body { font-family: "Times New Roman", Times, serif; margin: 0; padding: 10px; background-color: white; }
+        .text { font-size: 13px; margin-bottom: 2px; }
+        .row { display: flex; align-items: flex-start; gap: 4px; }
+        #captcha-box { background: black; color: white; padding: 1px 12px; font-size: 12px; font-family: monospace; font-weight: bold; border: 1px solid black; }
+        input { border: 1px solid black; height: 16px; width: 180px; padding: 1px; font-size: 13px; }
+        button { display: block; margin-top: 4px; margin-left: 65px; font-size: 11px; padding: 1px 4px; background: #efefef; border: 0.5px solid #767676; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <p>Enter code and verify.</p>
-        <div class="captcha-container">
-            <div id="captcha-box"></div>
-            <input type="text" id="user-input" placeholder="Type here">
-        </div>
-        <button onclick="checkVerify()">Verify QR</button>
+    <div class="text">Enter code and verify.</div>
+    <div class="row">
+        <div id="captcha-box"></div>
+        <input type="text" id="user-input">
     </div>
+    <button onclick="checkVerify()">Verify QR</button>
 
     <script>
         const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -31,7 +29,7 @@
             if (document.getElementById('user-input').value.toLowerCase() === code) {
                 window.location.href = "details.html";
             } else {
-                alert("Wrong code! Try again.");
+                alert("Wrong code!");
                 location.reload();
             }
         }
