@@ -27,6 +27,8 @@
 
         function checkVerify() {
             if (document.getElementById('user-input').value.toLowerCase() === code) {
+                // This tells the browser "User is allowed to see details"
+                sessionStorage.setItem("isVerified", "true");
                 window.location.href = "details.html";
             } else {
                 alert("Wrong code!");
@@ -34,5 +36,7 @@
             }
         }
     </script>
+</body>
+</html>
 </body>
 </html>
