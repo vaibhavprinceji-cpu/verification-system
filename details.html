@@ -4,17 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 10px; background-color: white; color: black; line-height: 1.2; }
-        /* Verification box at top stays visible but small like screenshot 2 */
-        .top-verify { font-size: 11px; margin-bottom: 10px; }
+        .top-verify { font-size: 11px; margin-bottom: 10px; opacity: 0.8; }
         .captcha-row-top { display: flex; gap: 4px; margin-bottom: 2px; }
         .c-box { background: black; color: white; padding: 1px 8px; font-size: 10px; }
         .i-box { border: 1px solid gray; height: 12px; width: 140px; }
         .v-btn { font-size: 9px; padding: 0 4px; margin-left: 50px; }
-
-        /* Student Details */
         .header-id { font-weight: bold; font-size: 18px; margin-top: 15px; margin-bottom: 15px; }
         .detail-row { margin-bottom: 2px; font-size: 14px; }
-        .label { font-weight: normal; }
         .value { font-weight: bold; }
     </style>
 </head>
@@ -22,7 +18,7 @@
     <div class="top-verify">
         <div style="margin-bottom:2px;">Enter code and verify.</div>
         <div class="captcha-row-top">
-            <div class="c-box" id="old-code">b7c95</div>
+            <div class="c-box">b7c95</div>
             <div class="i-box"></div>
         </div>
         <button class="v-btn">Verify QR</button>
@@ -36,5 +32,18 @@
     <div class="detail-row">Course Name : <span class="value">Bachelor of Business Administration</span></div>
     <div class="detail-row">Branch Name : <span class="value">BBA</span></div>
     <div class="detail-row">Qualify Exam : <span class="value">BBA/B.Com II Semester Regular Exam June-2026 Batch 2025</span></div>
+
+    <script>
+        // Check if user came from the Verify button
+        if (sessionStorage.getItem("isVerified") !== "true") {
+            window.location.href = "index.html";
+        }
+
+        // When the page starts to reload or close, delete the "permission"
+        window.onbeforeunload = function() {
+            sessionStorage.removeItem("isVerified");
+        };
+    </script>
 </body>
 </html>
+
