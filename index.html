@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; background: #f4f4f4; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: inline-block; }
+        .captcha-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        #captcha-box { background: black; color: white; padding: 5px 15px; font-family: monospace; font-weight: bold; font-size: 1.2rem; }
+        input { border: 1px solid #ccc; padding: 8px; width: 120px; border-radius: 4px; }
+        button { display: block; margin: 20px auto; padding: 10px 25px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>Enter code and verify.</p>
+        <div class="captcha-container">
+            <div id="captcha-box"></div>
+            <input type="text" id="user-input" placeholder="Type here">
+        </div>
+        <button onclick="checkVerify()">Verify QR</button>
+    </div>
+
+    <script>
+        const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        let code = "";
+        for (let i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+        document.getElementById('captcha-box').innerText = code;
+
+        function checkVerify() {
+            if (document.getElementById('user-input').value.toLowerCase() === code) {
+                window.location.href = "details.html";
+            } else {
+                alert("Wrong code! Try again.");
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
